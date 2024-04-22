@@ -1,0 +1,31 @@
+{
+  "name": "npm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha --exit",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rng4302/sit725-2024-t1-prac4.git"
+  },
+  "author": "Raj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rng4302/sit725-2024-t1-prac4/issues"
+  },
+  "homepage": "https://github.com/rng4302/sit725-2024-t1-prac4#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "cors": "^2.8.5",
+    "express": "^4.19.1",
+    "mongodb": "^6.5.0",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "chai-http": "^4.4.0",
+    "mocha": "^10.4.0"
+  }
+}
