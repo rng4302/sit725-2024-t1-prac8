@@ -1,5 +1,6 @@
 const path = require('path');
 const client = require("../dbconnection");
+const { ObjectId } = require('mongodb');
 
 const dbname = "test";
 const collectionName = "cat";
@@ -42,3 +43,17 @@ exports.getIndex = async (req, res) => {
     }
 };
 
+exports.deleteKitten = async (req, res) => {
+    const id = req.params.id;
+    try {
+        await client.connect();
+        const db = client.db("test");
+        const result = await db.collection(collectionName).deleteOne({ _id: new ObjectId(id) });
+        res.json({ statusCode: 200, data: result, message: 'Kitten deleted successfully', success: true });
+    } catch (err) {
+        console.error("Error deleting kitten:", err);
+        res.status(500).json({ message: 'Internal server error', success: false });
+    } finally {
+        await client.close();
+    }
+};
