@@ -25,7 +25,7 @@ exports.createKitten = async (req, res) => {
         await client.connect();
         const db = client.db(dbname);
         const result = await db.collection(collectionName).insertOne(newKitten);
-        res.json({ statusCode: 200, data: result.ops, message: 'New kitten created successfully', success: true });
+        res.json({ statusCode: 200, data: result, message: 'New kitten created successfully', success: true });
     } catch (err) {
         console.error("Error creating kitten:", err);
         res.status(500).json({ message: 'Internal server error', success: false });
