@@ -4,6 +4,7 @@ const indexRoutes = require('./routes/routes.js');
 
 const app = express();
 const port = process.env.PORT || 3000;
+let http = require('http').createServer(app);
 
 // Middleware
 app.use(express.static(__dirname + '/views/public'));
@@ -15,8 +16,23 @@ app.use(cors());
 app.use('/', indexRoutes);
 
 // Start server
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+let io = require('socket.io')(http);
+http.listen(3000,
+    () => {
+        console.log('express server started');
+    });
+
+io.on('connection', (socket) => {
+    console.log('a user connected');
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
+    setInterval(() => {
+        socket.emit('number', parseInt(Math.random() * 10));
+    }, 1000);
+    socket.on('number', (msg) => {
+        console.log('Random number: ' + msg);
+    })
+})
 
 module.exports = app;

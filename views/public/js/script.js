@@ -44,13 +44,13 @@ $(document).ready(function () {
     //getcards();
 });
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     fetchCards();
 
     var modalElem = document.querySelector('.modal');
     var modalInstance = M.Modal.init(modalElem);
 
-    document.getElementById('kittenForm').addEventListener('submit', function(event) {
+    document.getElementById('kittenForm').addEventListener('submit', function (event) {
         event.preventDefault();
         addToDb();
     });
@@ -114,4 +114,4 @@ function addToDb() {
         .catch(error => {
             console.error('Error:', error);
         });
-    }
+}
